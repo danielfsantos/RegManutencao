@@ -26,6 +26,7 @@ public class Estoque extends Application {
 		initComponents();
 		initListener();
 		Scene cene = new Scene(pane);
+		cene.getStylesheets().add("application.css");
 		stage.setScene(cene);
 		stage.setResizable(false);
 		stage.setTitle("LOGIN - RegManutenção");
@@ -36,7 +37,7 @@ public class Estoque extends Application {
 
 	/**
 	 * 
-	 * Inicialização dos componentes
+	 * Inicialização dos componentes da tela
 	 * 
 	 * @author Daniel Fernandes
 	 */
@@ -60,6 +61,11 @@ public class Estoque extends Application {
 		return stage;
 	}
 
+	/**
+	 * Função que inicia o Layout dos componentes da pagina
+	 * 
+	 * @author Daniel Fernandes dos Santos
+	 */
 	private void initLayout() {
 		txtLogin.setLayoutX((pane.getWidth() - txtLogin.getWidth()) / 2);
 		txtLogin.setLayoutY(50);
@@ -74,6 +80,12 @@ public class Estoque extends Application {
 		btnSair.setLayoutY(200);
 	}
 
+	/**
+	 * 
+	 * Função que inicia as ações dos componentes da tela
+	 * 
+	 * @author Daniel Fernandes dos Santos
+	 */
 	private void initListener() {
 		btnSair.setOnAction(new EventHandler<ActionEvent>() {
 
