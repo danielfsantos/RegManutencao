@@ -2,7 +2,8 @@ package br.com.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Collection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -14,8 +15,9 @@ public class AdmBanco {
 	String servico = "xe";
 	String userName = "SYSTEM";
 	String passName = "Inmetrics01";
-	String url = "jdbc:oracle:thin:@" + serverName + ":" + portNumber + ":" + servico + userName + passName;
 	String url2 = "jdbc:oracle:thin:@localhost:1521:xe";
+	ResultSet rs;
+	Statement stmt;
 
 	public void conectar() {
 
@@ -27,6 +29,18 @@ public class AdmBanco {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Ocorreu um erro");
 			System.err.println(e.getMessage());
+		}
+	}
+
+	public void selecionar() {
+		try {
+			rs = stmt.executeQuery("select * from TESTE");
+			while (rs.next()) {
+				System.out.println(rs.getString("NOMETESTE"));
+			}
+
+		} catch (Exception e) {
+
 		}
 	}
 

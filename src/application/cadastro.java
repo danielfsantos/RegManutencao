@@ -27,9 +27,10 @@ public class cadastro extends Application {
 		pane = new AnchorPane();
 		tNome = new TableColumn<>();
 		tLogradouro = new TableColumn<>();
+		lblNome = new Label();
 		table.getColumns().addAll(tNome, tLogradouro);
 		pane.setPrefSize(800, 600);
-		pane.getChildren().addAll(txtNome, txtLogradouro, table);
+		pane.getChildren().addAll(txtNome, txtLogradouro, table,lblNome);
 
 	}
 
@@ -44,6 +45,8 @@ public class cadastro extends Application {
 		table.setLayoutY(200);
 		tNome.setText("Nome");
 		tLogradouro.setText("Logradouro");
+		lblNome.setLabelFor(txtNome);
+		lblNome.setText("Nome :");
 
 	}
 

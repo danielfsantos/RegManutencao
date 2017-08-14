@@ -117,6 +117,7 @@ public class Estoque extends Application {
 	public void entrar() {
 		if (txtLogin.getText().equals("Daniel") && txtSenha.getText().equals("123")) {
 			banco.conectar();
+			banco.selecionar();
 			
 		} else {
 			JOptionPane.showMessageDialog(null, "DEU ERRO", "ERROR", JOptionPane.ERROR_MESSAGE);
