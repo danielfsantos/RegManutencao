@@ -2,6 +2,7 @@ package application;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -10,8 +11,9 @@ import javafx.stage.Stage;
 
 public class cadastro extends Application {
 
-	private TextField nome;
-	private TextField logradouro;
+	private TextField txtNome;
+	private TextField txtLogradouro;
+	private Label lblNome;
 	private TableColumn tNome;
 	private TableColumn tLogradouro;
 	private TableColumn tCep;
@@ -20,23 +22,29 @@ public class cadastro extends Application {
 	private AnchorPane pane;
 
 	public void initComponents() {
-		nome = new TextField();
-		logradouro = new TextField();
+		txtNome = new TextField();
+		txtLogradouro = new TextField();
 		pane = new AnchorPane();
+		tNome = new TableColumn<>();
+		tLogradouro = new TableColumn<>();
+		table.getColumns().addAll(tNome, tLogradouro);
 		pane.setPrefSize(800, 600);
-		pane.getChildren().addAll(nome, logradouro);
+		pane.getChildren().addAll(txtNome, txtLogradouro, table);
 
 	}
 
 	public void initLayout() {
-			nome.setLayoutX((pane.getWidth() - nome.getWidth()) / 2);
-			nome.setLayoutY(50);
-			
-			logradouro.setLayoutX((pane.getWidth() - logradouro.getWidth()) / 2);
-			logradouro.setLayoutY(100);
-			
-			
-			
+		txtNome.setLayoutX((pane.getWidth() - txtNome.getWidth()) / 10);
+		txtNome.setLayoutY(50);
+
+		txtLogradouro.setLayoutX((pane.getWidth() - txtLogradouro.getWidth()) / 10);
+		txtLogradouro.setLayoutY(90);
+
+		table.setLayoutX((pane.getWidth() - table.getWidth()) / 2);
+		table.setLayoutY(200);
+		tNome.setText("Nome");
+		tLogradouro.setText("Logradouro");
+
 	}
 
 	@Override

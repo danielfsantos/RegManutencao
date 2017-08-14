@@ -2,6 +2,7 @@ package application;
 
 import javax.swing.JOptionPane;
 
+import br.com.dao.AdmBanco;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +21,7 @@ public class Estoque extends Application {
 	private Button btnSair;
 	private static Stage stage;
 	private AnchorPane pane;
+	public AdmBanco banco = new AdmBanco();
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -100,6 +102,7 @@ public class Estoque extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
+				
 				entrar();
 
 			}
@@ -113,7 +116,8 @@ public class Estoque extends Application {
 
 	public void entrar() {
 		if (txtLogin.getText().equals("Daniel") && txtSenha.getText().equals("123")) {
-
+			banco.conectar();
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "DEU ERRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
