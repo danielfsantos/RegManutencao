@@ -23,21 +23,28 @@ public class cadastro extends Application {
 		nome = new TextField();
 		logradouro = new TextField();
 		pane = new AnchorPane();
-		table.getColumns().addAll(tNome, tLogradouro);
+		pane.setPrefSize(800, 600);
+		pane.getChildren().addAll(nome, logradouro);
 
 	}
 
 	public void initLayout() {
-
+			nome.setLayoutX((pane.getWidth() - nome.getWidth()) / 2);
+			nome.setLayoutY(50);
+			
+			logradouro.setLayoutX((pane.getWidth() - logradouro.getWidth()) / 2);
+			logradouro.setLayoutY(100);
+			
+			
+			
 	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
-
+		initComponents();
 		Scene cene = new Scene(pane);
-		cene.getStylesheets().add("application.css");
 		stage.setScene(cene);
-		stage.setResizable(false);
+		stage.setResizable(true);
 		stage.setTitle("LOGIN - RegManutenção");
 		stage.show();
 		initLayout();
