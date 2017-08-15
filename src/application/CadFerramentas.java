@@ -70,7 +70,7 @@ public class CadFerramentas extends Application {
 		Scene cene = new Scene(pane);
 		stage.setScene(cene);
 		stage.setResizable(true);
-		stage.setTitle("LOGIN - RegManutenção");
+		stage.setTitle("CADASTRO DE FERRAMENTAS - RegManutenção");
 		stage.show();
 		initLayout();
 		CadFerramentas.stage = stage;

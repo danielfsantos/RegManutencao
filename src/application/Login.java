@@ -22,12 +22,14 @@ public class Login extends Application {
 	private static Stage stage;
 	private AnchorPane pane;
 	private CadFerramentas cad = new CadFerramentas();
+	private AdmBanco banco = new AdmBanco();
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		initComponents();
 		initListener();
 		Scene cene = new Scene(pane);
+		cene.getStylesheets().add("br/com/estilos/estilo.css");
 		stage.setScene(cene);
 		stage.setResizable(false);
 		stage.setTitle("LOGIN - RegManutenção");
@@ -50,8 +52,8 @@ public class Login extends Application {
 		btnEntrar = new Button("ENTRAR");
 		btnSair = new Button("SAIR");
 		pane = new AnchorPane();
+		pane.setId("pane");
 		pane.setPrefSize(400, 300);
-		pane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100% , blue 0% , silver 100%);");
 		txtLogin.setPromptText("Input de Login");
 		txtSenha.setPromptText("Txt de Senha");
 		pane.getChildren().addAll(txtLogin, txtSenha, btnEntrar, btnSair);
@@ -122,10 +124,11 @@ public class Login extends Application {
 	public void entrar() {
 		if (txtLogin.getText().equals("Daniel") && txtSenha.getText().equals("123")) {
 			try {
-				cad.start(cad.getStage());
+				cad.start(getStage());
+				banco.selecionar();
 
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 
