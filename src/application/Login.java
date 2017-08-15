@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Estoque extends Application {
+public class Login extends Application {
 
 	private TextField txtLogin;
 	private PasswordField txtSenha;
@@ -21,20 +21,19 @@ public class Estoque extends Application {
 	private Button btnSair;
 	private static Stage stage;
 	private AnchorPane pane;
-	public AdmBanco banco = new AdmBanco();
+	private CadFerramentas cad = new CadFerramentas();
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		initComponents();
 		initListener();
 		Scene cene = new Scene(pane);
-		cene.getStylesheets().add("application.css");
 		stage.setScene(cene);
 		stage.setResizable(false);
 		stage.setTitle("LOGIN - RegManutenção");
 		stage.show();
 		initLayout();
-		Estoque.stage = stage;
+		Login.stage = stage;
 	}
 
 	/**
@@ -102,7 +101,7 @@ public class Estoque extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-				
+
 				entrar();
 
 			}
@@ -114,11 +113,22 @@ public class Estoque extends Application {
 		System.exit(0);
 	}
 
+	
+	
+	/**
+	 * 
+	 * Verifica as credenciaais de acesso e abre a proxima tela 
+	 * */
 	public void entrar() {
 		if (txtLogin.getText().equals("Daniel") && txtSenha.getText().equals("123")) {
-			banco.conectar();
-			banco.selecionar();
-			
+			try {
+				cad.start(cad.getStage());
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		} else {
 			JOptionPane.showMessageDialog(null, "DEU ERRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}

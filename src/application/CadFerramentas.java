@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class cadastro extends Application {
+public class CadFerramentas extends Application {
 
 	private TextField txtNome;
 	private TextField txtLogradouro;
@@ -21,6 +21,12 @@ public class cadastro extends Application {
 	private static Stage stage;
 	private AnchorPane pane;
 
+	
+	/**
+	 * 
+	 * Inicia os componentes da tela 
+	 * 
+	 * */
 	public void initComponents() {
 		txtNome = new TextField();
 		txtLogradouro = new TextField();
@@ -34,7 +40,15 @@ public class cadastro extends Application {
 
 	}
 
+	/**
+	 * 
+	 * inicia o Layout dos componentes da tela 
+	 * 
+	 * */
 	public void initLayout() {
+		lblNome.setLayoutX((pane.getWidth() - lblNome.getWidth())/10);
+		lblNome.setLayoutY(50);
+		lblNome.setLabelFor(txtNome);
 		txtNome.setLayoutX((pane.getWidth() - txtNome.getWidth()) / 10);
 		txtNome.setLayoutY(50);
 
@@ -45,7 +59,7 @@ public class cadastro extends Application {
 		table.setLayoutY(200);
 		tNome.setText("Nome");
 		tLogradouro.setText("Logradouro");
-		lblNome.setLabelFor(txtNome);
+	
 		lblNome.setText("Nome :");
 
 	}
@@ -59,7 +73,7 @@ public class cadastro extends Application {
 		stage.setTitle("LOGIN - RegManutenção");
 		stage.show();
 		initLayout();
-		cadastro.stage = stage;
+		CadFerramentas.stage = stage;
 	}
 
 	public Stage getStage() {
