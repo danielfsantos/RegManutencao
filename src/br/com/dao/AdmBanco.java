@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 public class AdmBanco {
@@ -18,6 +21,7 @@ public class AdmBanco {
 
 	/**
 	 * Conexão com a base de dados
+	 * 
 	 * 
 	 * 
 	 * 
@@ -41,19 +45,24 @@ public class AdmBanco {
 	 * 
 	 * 
 	 */
-	public void selecionar() {
+	public List<String> selecionar() {
 		conectar();
-
+		
+		List<String> userpass = new ArrayList<String>();
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select * from ferramentas");
+			rs = stmt.executeQuery("select * from login");
 			while (rs.next()) {
-				System.out.println(rs.getString("nome"));
+				userpass.add(rs.getString("usuario"));
+				userpass.add(rs.getString("senha"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		return userpass;
 
 	}
 

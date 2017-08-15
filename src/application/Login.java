@@ -1,5 +1,8 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import br.com.dao.AdmBanco;
@@ -122,10 +125,14 @@ public class Login extends Application {
 	 * Verifica as credenciaais de acesso e abre a proxima tela 
 	 * */
 	public void entrar() {
-		if (txtLogin.getText().equals("Daniel") && txtSenha.getText().equals("123")) {
+		
+		List<String> userpass = new ArrayList<String>();
+		userpass = banco.selecionar();
+		
+		if (txtLogin.getText().equals(userpass.get(0)) && txtSenha.getText().equals(userpass.get(1))) {
 			try {
-				banco.selecionar();
 				
+				cad.start(getStage());
 
 			} catch (Exception e) {
 			
