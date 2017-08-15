@@ -3,20 +3,25 @@ package br.com.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.JOptionPane;
 
 public class AdmBanco {
 
 	private Connection con;
-
 	private String userName = "SYSTEM";
 	private String passName = "Inmetrics01";
 	private String bancoUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	private ResultSet rs;
 	private Statement stmt;
 
+	/**
+	 * Conexão com a base de dados
+	 * 
+	 * 
+	 * 
+	 */
 	public void conectar() {
 
 		try {
@@ -30,18 +35,26 @@ public class AdmBanco {
 		}
 	}
 
+	/**
+	 * 
+	 * Exemplo de select
+	 * 
+	 * 
+	 */
 	public void selecionar() {
-		try {
-			conectar();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery("select * from TESTE");
-			while (rs.next()) {
-				System.out.println(rs.getString("NOMETESTE"));
-			}
+		conectar();
 
-		} catch (Exception e) {
-			System.err.println("Ocorreu um erro " + e.getMessage());
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("select * from ferramentas");
+			while (rs.next()) {
+				System.out.println(rs.getString("nome"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
 	}
 
 }

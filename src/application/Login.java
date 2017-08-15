@@ -124,8 +124,8 @@ public class Login extends Application {
 	public void entrar() {
 		if (txtLogin.getText().equals("Daniel") && txtSenha.getText().equals("123")) {
 			try {
-				cad.start(getStage());
 				banco.selecionar();
+				
 
 			} catch (Exception e) {
 			
