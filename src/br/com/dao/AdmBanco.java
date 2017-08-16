@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AdmBanco {
 
@@ -47,7 +49,7 @@ public class AdmBanco {
 	 */
 	public List<String> selecionar() {
 		conectar();
-		
+
 		List<String> userpass = new ArrayList<String>();
 		try {
 			stmt = con.createStatement();
@@ -60,9 +62,27 @@ public class AdmBanco {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return userpass;
+
+	}
+
+	public ObservableList<String> valoresDB() {
+		conectar();
+		ObservableList<String> valores = FXCollections.observableArrayList();
+
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("Select * from tabjogos");
+			while (rs.next()) {
+				valores.add(rs.getString("nome"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return valores;
 
 	}
 

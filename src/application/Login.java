@@ -2,9 +2,7 @@ package application;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import br.com.dao.AdmBanco;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -24,7 +22,7 @@ public class Login extends Application {
 	private Button btnSair;
 	private static Stage stage;
 	private AnchorPane pane;
-	private CadFerramentas cad = new CadFerramentas();
+	private CadJogos cad = new CadJogos();
 	private AdmBanco banco = new AdmBanco();
 
 	@Override
@@ -118,24 +116,22 @@ public class Login extends Application {
 		System.exit(0);
 	}
 
-	
-	
 	/**
 	 * 
-	 * Verifica as credenciaais de acesso e abre a proxima tela 
-	 * */
+	 * Verifica as credenciaais de acesso e abre a proxima tela
+	 */
 	public void entrar() {
-		
+
 		List<String> userpass = new ArrayList<String>();
 		userpass = banco.selecionar();
-		
+
 		if (txtLogin.getText().equals(userpass.get(0)) && txtSenha.getText().equals(userpass.get(1))) {
 			try {
-				
+
 				cad.start(getStage());
 
 			} catch (Exception e) {
-			
+
 				e.printStackTrace();
 			}
 
