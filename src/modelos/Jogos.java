@@ -20,6 +20,7 @@ public class Jogos extends Application {
 	private Button btnSalvar;
 	private Button btnSair;
 	private ComboBox<String> cboGenero;
+	private ComboBox<String> cboPlataforma;
 	private static Stage stage;
 	private AnchorPane pane;
 	private AdmBanco banco = new AdmBanco();
@@ -57,6 +58,10 @@ public class Jogos extends Application {
 
 		cboGenero = new ComboBox<>();
 		cboGenero.setPromptText("Genero");
+		popularCombo();
+		
+		cboPlataforma = new ComboBox<>();
+		cboPlataforma.setPromptText("Plataforma");
 		popularCombo();
 		
 
