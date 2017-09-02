@@ -15,9 +15,10 @@ import javafx.collections.ObservableList;
 public class AdmBanco {
 
 	private Connection con;
-	private String userName = "daniel";
+	private String userName = "root";
 	private String passName = "root";
 	private String bancoUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String bancoUrlMysql = "jdbc:mysql://localhost:3306/GAMER";
 	private ResultSet rs;
 	private Statement stmt;
 
@@ -29,10 +30,10 @@ public class AdmBanco {
 	 *@author Daniel Fernandes
 	 */
 	public Connection conectar() {
-
+//oracle.jdbc.driver.OracleDriver
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection(bancoUrl, userName, passName);
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(bancoUrlMysql, userName, passName);
 			System.out.println("Conectado com sucesso !");
 
 		} catch (Exception e) {
