@@ -14,11 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Login extends Application {
+public class Jogos extends Application {
 
-	private TextField txtLogin;
-	private PasswordField txtSenha;
-	private Button btnEntrar;
+	private TextField txtNome;
+	private PasswordField txtGenero;
+	private Button btnSalvar;
 	private Button btnSair;
 	private static Stage stage;
 	private AnchorPane pane;
@@ -35,7 +35,7 @@ public class Login extends Application {
 		stage.setTitle("LOGIN - RegManuten��o");
 		stage.show();
 		initLayout();
-		Login.stage = stage;
+		Jogos.stage = stage;
 	}
 
 	/**
@@ -45,18 +45,18 @@ public class Login extends Application {
 	 * @author Daniel Fernandes
 	 */
 	public void initComponents() {
-		txtLogin = new TextField();
-		txtLogin.setPromptText("LOGIN");
-		txtSenha = new PasswordField();
-		txtSenha.setPromptText("SENHA");
-		btnEntrar = new Button("ENTRAR");
+		txtNome = new TextField();
+		txtNome.setPromptText("Nome");
+		txtGenero = new PasswordField();
+		txtGenero.setPromptText("Genero");
+		btnSalvar = new Button("Salvar");
 		btnSair = new Button("SAIR");
 		pane = new AnchorPane();
 		pane.setId("pane");
 		pane.setPrefSize(400, 300);
-		txtLogin.setPromptText("Input de Login");
-		txtSenha.setPromptText("Txt de Senha");
-		pane.getChildren().addAll(txtLogin, txtSenha, btnEntrar, btnSair);
+		txtNome.setPromptText("Input de Login");
+		txtGenero.setPromptText("Txt de Senha");
+		pane.getChildren().addAll(txtNome, txtGenero, btnSalvar, btnSair);
 
 	}
 
@@ -70,14 +70,14 @@ public class Login extends Application {
 	 * @author Daniel Fernandes dos Santos
 	 */
 	private void initLayout() {
-		txtLogin.setLayoutX((pane.getWidth() - txtLogin.getWidth()) / 2);
-		txtLogin.setLayoutY(50);
+		txtNome.setLayoutX((pane.getWidth() - txtNome.getWidth()) / 2);
+		txtNome.setLayoutY(50);
 
-		txtSenha.setLayoutX((pane.getWidth() - txtSenha.getWidth()) / 2);
-		txtSenha.setLayoutY(100);
+		txtGenero.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 2);
+		txtGenero.setLayoutY(100);
 
-		btnEntrar.setLayoutX((pane.getWidth() - btnEntrar.getWidth()) / 2);
-		btnEntrar.setLayoutY(150);
+		btnSalvar.setLayoutX((pane.getWidth() - btnSalvar.getWidth()) / 2);
+		btnSalvar.setLayoutY(150);
 
 		btnSair.setLayoutX((pane.getWidth() - btnSair.getWidth()) / 2);
 		btnSair.setLayoutY(200);
@@ -99,7 +99,7 @@ public class Login extends Application {
 			}
 		});
 
-		btnEntrar.setOnAction(new EventHandler<ActionEvent>() {
+		btnSalvar.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
@@ -129,7 +129,7 @@ public class Login extends Application {
 		List<String> userpass = new ArrayList<String>();
 		userpass = banco.selecionar();
 
-		if (txtLogin.getText().equals(userpass.get(0)) && txtSenha.getText().equals(userpass.get(1))) {
+		if (txtNome.getText().equals(userpass.get(0)) && txtGenero.getText().equals(userpass.get(1))) {
 			try {
 
 
