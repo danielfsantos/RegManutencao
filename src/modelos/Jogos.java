@@ -1,9 +1,10 @@
-package application;
+package modelos;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import br.com.dao.AdmBanco;
+import controles.JogosDao;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,12 +18,15 @@ import javafx.stage.Stage;
 public class Jogos extends Application {
 
 	private TextField txtNome;
-	private PasswordField txtGenero;
+	private TextField txtId;
+	private TextField txtPlataforma;
+	private TextField txtGenero;
 	private Button btnSalvar;
 	private Button btnSair;
 	private static Stage stage;
 	private AnchorPane pane;
 	private AdmBanco banco = new AdmBanco();
+	private JogosDao jogosdao;
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -32,7 +36,7 @@ public class Jogos extends Application {
 		cene.getStylesheets().add("br/com/estilos/estilo.css");
 		stage.setScene(cene);
 		stage.setResizable(false);
-		stage.setTitle("LOGIN - RegManuten��o");
+		stage.setTitle("Cadastro de jogos");
 		stage.show();
 		initLayout();
 		Jogos.stage = stage;
@@ -47,16 +51,23 @@ public class Jogos extends Application {
 	public void initComponents() {
 		txtNome = new TextField();
 		txtNome.setPromptText("Nome");
-		txtGenero = new PasswordField();
+		
+		txtGenero = new TextField();
 		txtGenero.setPromptText("Genero");
+		
+		txtId = new TextField();
+		txtId.setPromptText("Id");
+		
+		txtPlataforma = new TextField();
+		txtPlataforma.setPromptText("Plataforma");
+		
+		
 		btnSalvar = new Button("Salvar");
 		btnSair = new Button("SAIR");
 		pane = new AnchorPane();
 		pane.setId("pane");
 		pane.setPrefSize(400, 300);
-		txtNome.setPromptText("Input de Login");
-		txtGenero.setPromptText("Txt de Senha");
-		pane.getChildren().addAll(txtNome, txtGenero, btnSalvar, btnSair);
+		pane.getChildren().addAll(txtNome, txtGenero, txtId, txtPlataforma, btnSalvar, btnSair);
 
 	}
 
@@ -76,11 +87,17 @@ public class Jogos extends Application {
 		txtGenero.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 2);
 		txtGenero.setLayoutY(100);
 
+		txtPlataforma.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 2);
+		txtPlataforma.setLayoutY(150);
+
+		txtId.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 2);
+		txtId.setLayoutY(200);
+
 		btnSalvar.setLayoutX((pane.getWidth() - btnSalvar.getWidth()) / 2);
-		btnSalvar.setLayoutY(150);
+		btnSalvar.setLayoutY(250);
 
 		btnSair.setLayoutX((pane.getWidth() - btnSair.getWidth()) / 2);
-		btnSair.setLayoutY(200);
+		btnSair.setLayoutY(300);
 	}
 
 	/**
@@ -103,8 +120,7 @@ public class Jogos extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-
-				entrar();
+				cadastrarJogos();
 
 			}
 		});
@@ -115,14 +131,11 @@ public class Jogos extends Application {
 		System.exit(0);
 	}
 
-	
-	
-	
 	/**
-	 * Verifica as credenciaais de acesso e abre a proxima tela
-	 *2 de set de 2017
-	 *void
-	 *@author Daniel Fernandes
+	 * Verifica as credenciaais de acesso e abre a proxima tela 2 de set de 2017
+	 * void
+	 * 
+	 * @author Daniel Fernandes
 	 */
 	public void entrar() {
 
@@ -132,7 +145,6 @@ public class Jogos extends Application {
 		if (txtNome.getText().equals(userpass.get(0)) && txtGenero.getText().equals(userpass.get(1))) {
 			try {
 
-
 			} catch (Exception e) {
 
 				e.printStackTrace();
@@ -141,6 +153,17 @@ public class Jogos extends Application {
 		} else {
 			JOptionPane.showMessageDialog(null, "DEU ERRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	public void cadastrarJogos() {
+		int ID = Integer.parseInt(txtId.getText());
+		String nome = txtNome.getText();
+		String Genero = txtGenero.getText();
+		String Plataforma =txtPlataforma.getText();
+		
+		jogosdao = new JogosDao();
+		
+		jogosdao.salvarJogos(ID,nome,Genero,Plataforma);
 	}
 
 	public static void main(String[] args) {

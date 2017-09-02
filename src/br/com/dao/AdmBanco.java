@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 public class AdmBanco {
 
 	private Connection con;
-	private String userName = "SYSTEM";
+	private String userName = "daniel";
 	private String passName = "root";
 	private String bancoUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	private ResultSet rs;
@@ -28,7 +28,7 @@ public class AdmBanco {
 	 *void
 	 *@author Daniel Fernandes
 	 */
-	public void conectar() {
+	public Connection conectar() {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -39,6 +39,7 @@ public class AdmBanco {
 			JOptionPane.showMessageDialog(null, "Ocorreu um erro "+e.getMessage());
 			System.err.println(e.getMessage());
 		}
+		return con;
 	}
 
 	/**
