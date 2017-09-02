@@ -1,7 +1,9 @@
 package modelos;
 
 import br.com.dao.AdmBanco;
+import controles.GeneroDao;
 import controles.JogosDao;
+import controles.PlataformaDao;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,6 +27,8 @@ public class Jogos extends Application {
 	private AnchorPane pane;
 	private AdmBanco banco = new AdmBanco();
 	private JogosDao jogosdao;
+	private GeneroDao genero;
+	private PlataformaDao plataforma;
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -58,19 +62,17 @@ public class Jogos extends Application {
 
 		cboGenero = new ComboBox<>();
 		cboGenero.setPromptText("Genero");
-		popularCombo();
 		
+
 		cboPlataforma = new ComboBox<>();
 		cboPlataforma.setPromptText("Plataforma");
 		popularCombo();
-		
-
 		btnSalvar = new Button("Salvar");
 		btnSair = new Button("SAIR");
 		pane = new AnchorPane();
 		pane.setId("pane");
 		pane.setPrefSize(800, 600);
-		pane.getChildren().addAll(cboGenero,txtNome, txtGenero,  txtPlataforma, btnSalvar, btnSair);
+		pane.getChildren().addAll(cboPlataforma,cboGenero, txtNome, txtGenero, txtPlataforma, btnSalvar, btnSair);
 
 	}
 
@@ -84,23 +86,28 @@ public class Jogos extends Application {
 	 * @author Daniel Fernandes dos Santos
 	 */
 	private void initLayout() {
-		txtNome.setLayoutX((pane.getWidth() - txtNome.getWidth()) / 2);
+		txtNome.setLayoutX((pane.getWidth() - txtNome.getWidth()) / 20);
 		txtNome.setLayoutY(50);
 
-		txtGenero.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 2);
-		txtGenero.setLayoutY(100);
+		txtGenero.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 20);
+		txtGenero.setLayoutY(80);
 
-		txtPlataforma.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 2);
-		txtPlataforma.setLayoutY(150);
+		txtPlataforma.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 20);
+		txtPlataforma.setLayoutY(110);
+
+
+		cboGenero.setLayoutX((pane.getWidth() - cboGenero.getWidth()) / 20);
+		cboGenero.setLayoutY(140);
+
+		cboPlataforma.setLayoutX((pane.getWidth() - cboGenero.getWidth()) / 20);
+		cboPlataforma.setLayoutY(170);
+		
 
 		btnSalvar.setLayoutX((pane.getWidth() - btnSalvar.getWidth()) / 2);
 		btnSalvar.setLayoutY(250);
-
-		cboGenero.setLayoutX((pane.getWidth() - cboGenero.getWidth()) / 2);
-		cboGenero.setLayoutY(330);
-
+		
 		btnSair.setLayoutX((pane.getWidth() - btnSair.getWidth()) / 2);
-		btnSair.setLayoutY(350);
+		btnSair.setLayoutY(280);
 	}
 
 	/**
@@ -140,20 +147,25 @@ public class Jogos extends Application {
 		String Plataforma = txtPlataforma.getText();
 
 		jogosdao = new JogosDao();
+		genero = new GeneroDao();
+		plataforma = new PlataformaDao();
 
-		jogosdao.salvarJogos(nome, jogosdao.buscarIdBancoGenero(cboGenero.getValue()), jogosdao.buscarIdBancoPlataforma(cboGenero.getValue()));
+		jogosdao.salvarJogos(nome, genero.buscarIdBancoGenero(cboGenero.getValue()),
+				plataforma.buscarIdBancoPlataforma(cboPlataforma.getValue()));
 	}
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-	
-	
+
 	public void popularCombo() {
-		jogosdao = new JogosDao();
-		cboGenero.getItems().addAll(jogosdao.popularCombo());
-		
+
+		genero = new GeneroDao();
+		cboGenero.getItems().addAll(genero.popularComboGenero());
+
+		plataforma = new PlataformaDao();
+		cboPlataforma.getItems().addAll(plataforma.popularComboPlataforma());
+
 	}
 
 }
