@@ -22,7 +22,6 @@ public class Login extends Application {
 	private Button btnSair;
 	private static Stage stage;
 	private AnchorPane pane;
-	private CadJogos cad = new CadJogos();
 	private AdmBanco banco = new AdmBanco();
 
 	@Override
@@ -33,7 +32,7 @@ public class Login extends Application {
 		cene.getStylesheets().add("br/com/estilos/estilo.css");
 		stage.setScene(cene);
 		stage.setResizable(false);
-		stage.setTitle("LOGIN - RegManutenção");
+		stage.setTitle("LOGIN - RegManutenï¿½ï¿½o");
 		stage.show();
 		initLayout();
 		Login.stage = stage;
@@ -41,7 +40,7 @@ public class Login extends Application {
 
 	/**
 	 * 
-	 * Inicialização dos componentes da tela
+	 * Inicializaï¿½ï¿½o dos componentes da tela
 	 * 
 	 * @author Daniel Fernandes
 	 */
@@ -66,7 +65,7 @@ public class Login extends Application {
 	}
 
 	/**
-	 * Função que inicia o Layout dos componentes da pagina
+	 * Funï¿½ï¿½o que inicia o Layout dos componentes da pagina
 	 * 
 	 * @author Daniel Fernandes dos Santos
 	 */
@@ -86,7 +85,7 @@ public class Login extends Application {
 
 	/**
 	 * 
-	 * Função que inicia as ações dos componentes da tela
+	 * Funï¿½ï¿½o que inicia as aï¿½ï¿½es dos componentes da tela
 	 * 
 	 * @author Daniel Fernandes dos Santos
 	 */
@@ -116,9 +115,14 @@ public class Login extends Application {
 		System.exit(0);
 	}
 
+	
+	
+	
 	/**
-	 * 
 	 * Verifica as credenciaais de acesso e abre a proxima tela
+	 *2 de set de 2017
+	 *void
+	 *@author Daniel Fernandes
 	 */
 	public void entrar() {
 
@@ -128,7 +132,6 @@ public class Login extends Application {
 		if (txtLogin.getText().equals(userpass.get(0)) && txtSenha.getText().equals(userpass.get(1))) {
 			try {
 
-				cad.start(getStage());
 
 			} catch (Exception e) {
 

@@ -16,17 +16,17 @@ public class AdmBanco {
 
 	private Connection con;
 	private String userName = "SYSTEM";
-	private String passName = "Inmetrics01";
+	private String passName = "root";
 	private String bancoUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	private ResultSet rs;
 	private Statement stmt;
 
 	/**
-	 * Conex„o com a base de dados
+	 * Conex√£o com a base de dados Oracle.
 	 * 
-	 * 
-	 * 
-	 * 
+	 *2 de set de 2017
+	 *void
+	 *@author Daniel Fernandes
 	 */
 	public void conectar() {
 
@@ -36,16 +36,19 @@ public class AdmBanco {
 			System.out.println("Conectado com sucesso !");
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Ocorreu um erro");
+			JOptionPane.showMessageDialog(null, "Ocorreu um erro "+e.getMessage());
 			System.err.println(e.getMessage());
 		}
 	}
 
 	/**
-	 * 
-	 * Exemplo de select
-	 * 
-	 * 
+	 * Select dos dados de Login
+	 *
+	 *2 de set de 2017
+	 *
+	 *List<String>
+	 *	
+	 *@author Daniel Fernandes
 	 */
 	public List<String> selecionar() {
 		conectar();
@@ -53,9 +56,9 @@ public class AdmBanco {
 		List<String> userpass = new ArrayList<String>();
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select * from login");
+			rs = stmt.executeQuery("select * from Login");
 			while (rs.next()) {
-				userpass.add(rs.getString("usuario"));
+				userpass.add(rs.getString("nome"));
 				userpass.add(rs.getString("senha"));
 			}
 		} catch (SQLException e) {
