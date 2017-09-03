@@ -17,8 +17,7 @@ import javafx.stage.Stage;
 public class Jogos extends Application {
 
 	private TextField txtNome;
-	private TextField txtPlataforma;
-	private TextField txtGenero;
+	
 	private Button btnSalvar;
 	private Button btnSair;
 	private ComboBox<String> cboGenero;
@@ -46,7 +45,7 @@ public class Jogos extends Application {
 
 	/**
 	 * 
-	 * Inicializa��o dos componentes da tela
+	 * Inicializa os componentes da tela 
 	 * 
 	 * @author Daniel Fernandes
 	 */
@@ -54,25 +53,19 @@ public class Jogos extends Application {
 		txtNome = new TextField();
 		txtNome.setPromptText("Nome");
 
-		txtGenero = new TextField();
-		txtGenero.setPromptText("Genero");
-
-		txtPlataforma = new TextField();
-		txtPlataforma.setPromptText("Plataforma");
-
 		cboGenero = new ComboBox<>();
 		cboGenero.setPromptText("Genero");
 		
-
 		cboPlataforma = new ComboBox<>();
 		cboPlataforma.setPromptText("Plataforma");
 		popularCombo();
+		
 		btnSalvar = new Button("Salvar");
 		btnSair = new Button("SAIR");
 		pane = new AnchorPane();
 		pane.setId("pane");
-		pane.setPrefSize(800, 600);
-		pane.getChildren().addAll(cboPlataforma,cboGenero, txtNome, txtGenero, txtPlataforma, btnSalvar, btnSair);
+		pane.setPrefSize(380, 384);
+		pane.getChildren().addAll(cboPlataforma,cboGenero, txtNome, btnSalvar, btnSair);
 
 	}
 
@@ -89,30 +82,23 @@ public class Jogos extends Application {
 		txtNome.setLayoutX((pane.getWidth() - txtNome.getWidth()) / 20);
 		txtNome.setLayoutY(50);
 
-		txtGenero.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 20);
-		txtGenero.setLayoutY(80);
-
-		txtPlataforma.setLayoutX((pane.getWidth() - txtGenero.getWidth()) / 20);
-		txtPlataforma.setLayoutY(110);
-
-
 		cboGenero.setLayoutX((pane.getWidth() - cboGenero.getWidth()) / 20);
-		cboGenero.setLayoutY(140);
+		cboGenero.setLayoutY(80);
 
 		cboPlataforma.setLayoutX((pane.getWidth() - cboGenero.getWidth()) / 20);
-		cboPlataforma.setLayoutY(170);
+		cboPlataforma.setLayoutY(110);
 		
 
 		btnSalvar.setLayoutX((pane.getWidth() - btnSalvar.getWidth()) / 2);
-		btnSalvar.setLayoutY(250);
+		btnSalvar.setLayoutY(200);
 		
 		btnSair.setLayoutX((pane.getWidth() - btnSair.getWidth()) / 2);
-		btnSair.setLayoutY(280);
+		btnSair.setLayoutY(230);
 	}
 
 	/**
 	 * 
-	 * Fun��o que inicia as a��es dos componentes da tela
+	 * INicializa as funções dos Botões 
 	 * 
 	 * @author Daniel Fernandes dos Santos
 	 */
@@ -137,14 +123,31 @@ public class Jogos extends Application {
 
 	}
 
+	/**
+	 * Encerra a Aplicação
+	 *
+	 *2 de set de 2017
+	 *
+	 *void
+	 *	
+	 *@author Daniel Fernandes
+	 */
 	public void fecharAplicativo() {
 		System.exit(0);
 	}
 
+	/**
+	 * Realiza o Cadastro dos jogos utilizando os valores obtidos da tela 
+	 *
+	 *2 de set de 2017
+	 *
+	 *void
+	 *	
+	 *@author Daniel Fernandes
+	 */
 	public void cadastrarJogos() {
 		String nome = txtNome.getText();
-		String Genero = txtGenero.getText();
-		String Plataforma = txtPlataforma.getText();
+		
 
 		jogosdao = new JogosDao();
 		genero = new GeneroDao();
@@ -158,6 +161,16 @@ public class Jogos extends Application {
 		launch(args);
 	}
 
+	
+	/**
+	 * Este metodo Popula as ComboBoxes da Tela
+	 *
+	 *2 de set de 2017
+	 *
+	 *void
+	 *	
+	 *@author Daniel Fernandes
+	 */
 	public void popularCombo() {
 
 		genero = new GeneroDao();
